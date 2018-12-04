@@ -22,7 +22,7 @@ public class Pred1Zad1 {
 		// ispitivanje tacnosti
 		if (rndBroj == broj) {
 			System.out.println("Neverovatno! Pogodili ste tačan broj!");
-		} else if (rndBroj - broj <= 5) {
+		} else if (Math.abs(rndBroj - broj) <= 5) {
 			System.out.println("Dobar pokušaj, bili ste jako blizu! Broj je: " + rndBroj);
 		} else {
 			System.out.println("Više sreće sledeći put... Broj je: " + rndBroj);
