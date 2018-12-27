@@ -1,19 +1,42 @@
-package predavanje3.zad2;
+package predavanje4.zad1;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
 
-	public static void main(String args[]) {
-		Nekretnina stanUBeograduNaVodi = new Stan("BG Voda 1", Zona.ZONA1, 120, new Vlasnik(), 20, 30);
-		Nekretnina kucaNaSenjaku = new Kuca("Ruska 30", Zona.ZONA2, 500,
-				new Vlasnik("pera", "peric", "1234567891234", "123456789"), 200);
-		Vlasnik vlasnik = new Vlasnik("Vojislav", "Seki", "6666666666666", "999999999");
-		Nekretnina stanUZemunu = new Stan("Glavna 13", Zona.ZONA3, 70, vlasnik, 5, 150);
-		Nekretnina kucaUSopotu = new Kuca("Sopot 1", Zona.ZONA4, 100, new Vlasnik(), 50);
 
-		System.out.println(stanUBeograduNaVodi);
-		System.out.println(kucaNaSenjaku);
-		System.out.println(stanUZemunu);
-		System.out.println(kucaUSopotu);
+	static Firma firma = new Firma("Java", 500000);
+	
+	public static void main(String[] args) {
 
+		new ArrayList<>();
+	
+		Proizvod proizvod1 = new MlecniProizvodi("kravica", 135, "07.11.2019", "kravlje");
+		Proizvod proizvod2 = new Meso("but", 469, "30.12.2018", "svinjetina");
+		Proizvod proizvod3 = new Kafe("grand", 356, "08.2.2020", VrstaKafe.MLEVENA);
+		Proizvod proizvod4 = new Sokovi("next", 160, "05.05.2019", "jabuka");
+		
+	/*	System.out.println(proizvod1);
+		System.out.println(proizvod2);
+		System.out.println(proizvod3);
+		System.out.println(proizvod4);
+*/
+	 System.out.println("Spisak proizvoda sa kolicinama");
+
+		firma.lista = new HashMap<>();
+        firma.lista.put(proizvod1, 55);
+        firma.lista.put(proizvod2, 85);
+        firma.lista.put(proizvod3, 155);
+        firma.lista.put(proizvod4, 505); 
+
+        System.out.println( firma.lista );
+       
+
+        System.out.println("Spisak proizvoda sa kolicinama nakon porudzbine");
+        
+        
+
+                           
 	}
 }
