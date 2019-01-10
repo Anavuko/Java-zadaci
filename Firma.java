@@ -1,7 +1,9 @@
 package predavanje4.zad1;
 
 
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Map.Entry;
 
 class Firma {
 
@@ -21,7 +23,7 @@ class Firma {
     public Firma (Firma f) {
     	nazivFirme=f.nazivFirme;
     	kapital=f.kapital;
-    }
+    }	
 
     public String getNazivFirme() {
     	return nazivFirme;
@@ -47,16 +49,35 @@ class Firma {
     }
 
     public void setLista(Map<Proizvod, Integer> lista) {
-
+    	this.lista = lista;
 
     }
+    public void stampanjeListaProizvoda () {
+    	Iterator<Entry<Proizvod, Integer>> it = lista.entrySet().iterator();
+		while (it.hasNext()) {
+			Map.Entry<Proizvod, Integer> pair = (Entry<Proizvod, Integer>) it.next();
+			System.out.println(pair.getKey() + " = " + pair.getValue());
 
-    @Override
-    public String toString() {
-        return String.format("Naziv kompanije: %s Upisani kapital: %.2f dinara",
-        		getNazivFirme(), getKapital());
-}
-	public void porudzbina(Map<Proizvod, Integer> lista2, Proizvod proizvod1, int i) {
-	
+		}
+
+    }
+	@Override
+	public String toString() {
+		return String.format("Naziv kompanije: %s Upisani kapital: %.2f dinara", getNazivFirme(), getKapital());
+	}
+
+	public void porudzbina(Proizvod proizvod, int kolicina) {
+
+		double cenaPorudzbine = proizvod.cenaSaPDV() * kolicina;
+
+		if (lista.containsKey(proizvod) && lista.get(proizvod) >= kolicina) {
+
+			lista.replace(proizvod, lista.get(proizvod), lista.get(proizvod) - kolicina);
+			kapital += cenaPorudzbine;
+		} else {
+
+			System.out.println("Nema dovoljno proizvoda na lageru.");
+		}
+		
 	}
 	}
