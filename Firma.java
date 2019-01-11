@@ -1,83 +1,56 @@
-package predavanje4.zad1;
+package Predavanje4Zad2;
 
+import java.util.List;
 
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
+class Firma {	protected  String fakultet;
 
-class Firma {
+	private String nazivFirme;
+	private List <Bolnica> listaBolnica;
+	
+	public Firma() {
 
-    private String nazivFirme;
+	}
 
-    private double kapital;
+	public Firma(String nazivFirme, List <Bolnica> listaBolnica) {
+		this.nazivFirme = nazivFirme;
+		this.listaBolnica = listaBolnica;
 
-    public Map<Proizvod, Integer> lista;
-    
-    public Firma () {
+	}
 
-    }
-    public Firma(String nazivFirme, double kapital) {
-    	this.nazivFirme = nazivFirme;
-    	this.kapital = kapital;
-    }
-    public Firma (Firma f) {
-    	nazivFirme=f.nazivFirme;
-    	kapital=f.kapital;
-    }	
+	public Firma(Firma f) {
+		nazivFirme = f.nazivFirme;
+		listaBolnica = f.listaBolnica;
 
-    public String getNazivFirme() {
-    	return nazivFirme;
+	}
+	public String getNazivFirme() {
+		return nazivFirme;
+	}
 
-    }	
+	public void setNazivFirme(String nazivFirme) {
+		this.nazivFirme = nazivFirme;
+	}
 
-    public void setNazivFirme(String nazivFirme) {
-    	this.nazivFirme = nazivFirme;
-    }
-
-    public double getKapital() {
-    	return kapital;
-
-    }
-    public void setKapital(double kapital) {
-    	this.kapital = kapital;
-    }
-
-    public Map<Proizvod, Integer> getLista() {
-
-        return lista;
-
-    }
-
-    public void setLista(Map<Proizvod, Integer> lista) {
-    	this.lista = lista;
-
-    }
-    public void stampanjeListaProizvoda () {
-    	Iterator<Entry<Proizvod, Integer>> it = lista.entrySet().iterator();
-		while (it.hasNext()) {
-			Map.Entry<Proizvod, Integer> pair = (Entry<Proizvod, Integer>) it.next();
-			System.out.println(pair.getKey() + " = " + pair.getValue());
-
+	public List<Bolnica> getListaBolnica(){
+		return listaBolnica;
+	}
+	public void setListaBolnica(List <Bolnica> listaBolnica) {
+		this.listaBolnica = listaBolnica;
+	}
+	public int getBrojBolnica() {
+		return listaBolnica.size();
+	}
+	public String getPodaciOBolnicama() {
+		String podaci = "";
+		for (Bolnica b: listaBolnica) {
+			podaci  = podaci+b + "\n";
 		}
+		return podaci;
+	}
 
-    }
 	@Override
 	public String toString() {
-		return String.format("Naziv kompanije: %s Upisani kapital: %.2f dinara", getNazivFirme(), getKapital());
+		return "Naziv Firme:" + getNazivFirme() + " \nBroj bolnica: " + getBrojBolnica() + "\n" + getPodaciOBolnicama() ;
+			
 	}
 
-	public void porudzbina(Proizvod proizvod, int kolicina) {
-
-		double cenaPorudzbine = proizvod.cenaSaPDV() * kolicina;
-
-		if (lista.containsKey(proizvod) && lista.get(proizvod) >= kolicina) {
-
-			lista.replace(proizvod, lista.get(proizvod), lista.get(proizvod) - kolicina);
-			kapital += cenaPorudzbine;
-		} else {
-
-			System.out.println("Nema dovoljno proizvoda na lageru.");
-		}
-		
-	}
-	}
+}
