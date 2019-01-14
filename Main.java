@@ -1,35 +1,43 @@
-package predavanje4.zad1;
+package Predavanje5Zad2;
 
-
-import java.util.HashMap;
-
-
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
-	static Firma firma = new Firma("Java", 500000);
-
 	public static void main(String[] args) {
-	System.out.println(firma);
-		
-		Proizvod proizvod1 = new MlecniProizvodi("kravica", 135, "07.11.2019", "kravlje");
-		Proizvod proizvod2 = new Meso("but", 469, "30.12.2018", "svinjetina");
-		Proizvod proizvod3 = new Kafe("grand", 356, "08.2.2020", VrstaKafe.MLEVENA);
-		Proizvod proizvod4 = new Sokovi("next", 160, "05.05.2019", "jabuka");
+		Scanner ulaz;
 
-		System.out.println("Spisak proizvoda sa kolicinama");
+		List<Student> listaStudenata = new ArrayList<Student>();
 
-		firma.lista = new HashMap<>();
-		firma.lista.put(proizvod1, 55);
-		firma.lista.put(proizvod2, 85);
-		firma.lista.put(proizvod3, 155);
-		firma.lista.put(proizvod4, 505);
+		try {
+			ulaz = new Scanner(new FileReader("poeni.txt"));
+			while (ulaz.hasNextLine()) {
+			
+				Student student = new Student();
+				String line = ulaz.nextLine();
+				student.setIme(line.substring(0, line.indexOf(" ")));
+				line = line.substring(line.indexOf(" ") + 1);
+				student.setPrezime(line.substring(0, line.indexOf(" ")));
+				line = line.substring(line.indexOf(" ") + 1);
+				int brojPoena = Integer.parseInt(line);
+				student.setBrojPoena(brojPoena);
+				listaStudenata.add(student);
+			}
+			Collections.sort(listaStudenata);
+			for(Student s:listaStudenata){
+				System.out.println(s);
+			}
+		} catch (FileNotFoundException e) {
+			System.out.println("Fajl nije pronadjen");
+		} catch (Exception e) {
+			System.out.println("Pogresan unos.");
+		}
 
-		firma.stampanjeListaProizvoda();
-		firma.porudzbina(proizvod1,12);
-		System.out.println("Spisak proizvoda sa kolicinama nakon porudzbine" );
-		firma.stampanjeListaProizvoda();
-		System.out.println(firma);
 	}
-	
+
 }
+
