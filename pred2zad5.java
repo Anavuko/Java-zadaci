@@ -1,4 +1,4 @@
-package Predavanje2;
+package predavanje2;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -30,7 +30,7 @@ public class pred2zad5 {
 		}
 		
 		if (n >= 5){
-			for (int i = 1; i <= 5; i++) {
+			for (int i = 0; i < 5; i++) {
 				System.out.println(niz[i]);
 			}
 		} else  System.out.println("Niz ima manje od 5 elemenata.");
